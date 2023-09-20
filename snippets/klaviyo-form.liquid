@@ -1,0 +1,167 @@
+
+<div class="kalvyio-form-wrap">
+  
+  
+  <form id="email_signup" id="contact_form" class="klaviyo_condensed_styling klaviyo_condensed_float klaviyo_condensed_embed_{{ block.settings.klaviyo_id }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate" >
+    <input type="hidden" name="g" value="{{ block.settings.klaviyo_id }}">
+
+    {% if block.settings.title != '' %}
+    <h6 class="klaviyo_form_actions">{{ block.settings.title }}</h6>
+  {% endif %}
+    <div class="klaviyo_field_group">
+      <input type="text" value="" name="first_name" id="k_id_name" placeholder="{% if block.settings.klavyio_first != blank %}{{ block.settings.klavyio_first }}{% else %}Name{% endif%}" />
+    </div>
+    <div class="klaviyo_field_group flex">
+      <div class="klaviyo_email">
+        <input type="email" value="" name="email" id="k_id_email" placeholder="{% if block.settings.klavyio_email != blank %}{{ block.settings.klavyio_email }}{% else %}Email Address{% endif%}" />
+      </div>
+      <div class="klaviyo_form_actions">
+        <button type="submit" class="klaviyo_submit_button action_button sign_up">{{ block.settings.klavyio_button }}</button>
+      </div>
+      
+    </div>
+    <div class="klaviyo_messages">
+      <div class="success_message" style="display:none;">
+        {% comment %}<!-- <p class="thank_you" ><span class="bigger">Your code is <span style="color: #FF4500;">{{block.settings.coupon}}</span></span> -->{% endcomment %}
+        <span class="smaller">{{ block.settings.klavyio_thankyou }}</span></p>    
+      </div>
+      <div class="error_message" style="display:none;"></div>
+    </div>  
+   
+  </form>
+</div>
+ 
+ 
+ 
+<style type="text/css">
+  
+.klaviyo_condensed_styling, 
+.klaviyo_styling {
+ 
+  display:inline-block !important;
+  
+}
+.klaviyo_condensed_styling .klaviyo_field_group {
+  width: calc(100% ) !important;
+  margin: 0;
+  float: left;
+}
+.klaviyo_condensed_styling .klaviyo_field_group:not(:last-child) {
+    margin-bottom: 15px;
+}
+.klaviyo_condensed_styling .klaviyo_field_group.flex{
+      display: flex;
+}
+.klaviyo_condensed_styling .klaviyo_email {
+    width: 100%;
+}
+.success_message {
+    color: black !important;
+}
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }},
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} {
+     
+}
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} label,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} label {
+  color:#50504F;
+}
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text],
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email],
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text],
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email] {
+  font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  border: 1px solid #b5b5b5;
+  border-radius: 5px !important;
+  height: 40px;
+  width: 100%;
+}
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} .klaviyo_submit_button,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} .klaviyo_submit_button {
+     
+}
+
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} .klaviyo_submit_button:hover,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} .klaviyo_submit_button:hover {
+  background: #304560;
+    border: 0;
+
+
+}
+ 
+ .klaviyo_condensed_styling{
+    margin-top: 15px;
+    margin-bottom: 0;
+    max-width: initial;
+    width: 100%;
+  }
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email] {
+    border-radius: 5px 0 0 5px !important;
+} 
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text]:focus,
+.klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email]:focus {
+  border-color: #304560;
+}
+
+.klaviyo_condensed_styling .klaviyo_submit_button {
+    background-color: #CC5500;
+    font-size: 16px;
+     
+    border-radius: 0px 5px 5px 0px !important;
+    height: 40px;
+    padding: 0 20px;
+    font-family: var(--font-body-family);
+  font-style: var(--font-body-style);
+  font-weight: var(--font-body-weight);
+  white-space: nowrap;
+}
+.success_message {
+    display: block;
+    text-align: left;
+    font-size: 16px !important;
+    font-weight: 700;
+}
+.klaviyo_messages {
+    width: 100%;
+        
+}  
+.success_message{
+  padding: 24px 0;
+}
+.klaviyo_condensed_styling .klaviyo_messages .error_message, .klaviyo_styling .klaviyo_messages .error_message{
+  color: red;
+}
+span.bigger {
+    display: block;
+    font-size: 28px;
+}
+span.smaller {
+    font-size: 16px;
+    color: green;
+}
+.klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text], .klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email], .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text], .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email],
+  .klaviyo_condensed_styling .klaviyo_submit_button {
+      font-size: 16px !important;
+}
+@media screen and (max-width:767px) {   
+  .klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text], .klaviyo_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email], .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=text], .klaviyo_condensed_styling.klaviyo_condensed_embed_{{ block.settings.klaviyo_id }} input[type=email],
+  .klaviyo_condensed_styling .klaviyo_submit_button {
+      font-size: 12px !important;
+  }
+}  
+</style>
+
+<script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+<script type="text/javascript">
+  KlaviyoSubscribe.attachToForms('#email_signup', {
+    hide_form_on_success: true,
+     custom_success_message: true,
+     content: {
+          extra_fields: ["$first_name"]
+     }
+
+  });
+
+</script>

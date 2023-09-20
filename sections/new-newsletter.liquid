@@ -1,0 +1,232 @@
+{% comment %}New devloped by KoderWeb{% endcomment %}
+{{ 'new-newsletter-section.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div class="new-newsletter section-{{ section.id }}-padding">
+    {% if section.settings.background_image != blank %}
+    <div class="newsletter-background-image">
+      <img src="{{ section.settings.background_image | img_url: "master" }}" alt="{{ section.settings.background_image.alt }}">
+    </div>
+    {% endif %}
+    <div class="newsletter-padding"> 
+    <div class="newsletter-wrapping">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+          {%- when 'logo' -%}
+            {% if block.settings.logo != blank %}
+            <div class="newsletter-logo {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              <img src="{{ block.settings.logo | img_url: '600x' }}" alt="{{ block.settings.logo.alt }}">
+            </div>
+            {% endif %}
+          {%- when 'heading' -%}
+            <h2
+              class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {{ block.settings.heading }}
+            </h2>
+          {%- when 'paragraph' -%}
+            <div
+              class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {{ block.shopify_attributes }}
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {{ block.settings.text }}
+            </div>
+          {%- when 'email_form' -%}
+            <div {{ block.shopify_attributes }}>
+              <div class="email_form_klaviyo {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" 
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}>
+                {% include 'klaviyo-form' %}
+              </div>
+            </div>
+          {%- when 'social' -%}
+            <div {{ block.shopify_attributes }}>
+              <div class="social_newsletter {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" 
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}>
+                {% include 'social-icons' %}
+              </div>
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "New newsletter",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+     {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background image"
+      }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.newsletter.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Subscribe to our emails",
+          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "t:sections.newsletter.blocks.paragraph.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Be the first to know about new collections and exclusive offers.</p>",
+          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "Klaviyo Embedded Form",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Klavio"
+        },
+        {
+          "type": "text",
+          "id": "klaviyo_id",
+          "label": "Klaviyo Embedded List ID"
+        },
+        {
+          "type": "text",
+          "id": "klavyio_first",
+          "label": "First Name",
+          "default": "First Name"
+        },
+        {
+          "type": "text",
+          "id": "klavyio_email",
+          "label": "Email text",
+          "default": "Enter Your MAIN Email Address"
+        },
+        {
+          "type": "text",
+          "id": "klavyio_button",
+          "label": "Button",
+          "default": "Yes, I'm in!"
+        },
+        {
+          "type": "text",
+          "id": "klavyio_thankyou",
+          "label": "Klaviyo Thank you Text",
+          "default": "Thank you for subscribing!"
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Logo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social Link",
+      "limit": 1,
+      "settings": [
+         
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New newsletter",
+      "blocks": [
+       
+        {
+          "type": "heading"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "email_form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
