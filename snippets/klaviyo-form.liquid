@@ -9,11 +9,11 @@
     <h6 class="klaviyo_form_actions">{{ block.settings.title }}</h6>
   {% endif %}
     <div class="klaviyo_field_group">
-      <input type="text" value="" name="first_name" id="k_id_name" placeholder="{% if block.settings.klavyio_first != blank %}{{ block.settings.klavyio_first }}{% else %}Name{% endif%}" />
+      <input type="text" value="" name="first_name" id="k_id_name" placeholder="{% if block.settings.klavyio_first != blank %}{{ block.settings.klavyio_first }}{% else %}Name{% endif %}" />
     </div>
     <div class="klaviyo_field_group flex">
       <div class="klaviyo_email">
-        <input type="email" value="" name="email" id="k_id_email" placeholder="{% if block.settings.klavyio_email != blank %}{{ block.settings.klavyio_email }}{% else %}Email Address{% endif%}" />
+        <input type="email" value="" name="email" id="k_id_email" placeholder="{% if block.settings.klavyio_email != blank %}{{ block.settings.klavyio_email }}{% else %}Email Address{% endif %}" />
       </div>
       <div class="klaviyo_form_actions">
         <button type="submit" class="klaviyo_submit_button action_button sign_up">{{ block.settings.klavyio_button }}</button>
